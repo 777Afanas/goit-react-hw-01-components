@@ -1,5 +1,5 @@
 import Profile from './Profile/Profile';
-import user from '../user.json';
+import user from './Profile/user.json';
 
 import Statistics from './Statistics/Statistics';
 import data from '../data.json';
@@ -7,8 +7,8 @@ import data from '../data.json';
 import { FriendList } from './FriendList/FriendList';
 import friends from '../friends.json';
 
-// import TransactionHistory from './TransactionHistory/TransactionHistory';
-// import transactions from '../transactions.json';
+import TransactionHistory from './TransactionHistory/TransactionHistory';
+import transactions from '../transactions.json';
 
 export const App = () => {
   return (
@@ -18,21 +18,27 @@ export const App = () => {
         tag={user.tag}
         location={user.location}
         avatar={user.avatar}
-        stats={user.stats}
+        // stats={user.stats}
+        followers={user.stats.followers}
+        views={user.stats.views}
+        likes={user.stats.likes}
       />
-      <FriendList friends={friends} />
       <Statistics
         title="Upload stats"
         stats={data} />
-      <Statistics
-        stats={data} />
-      {/* <TransactionHistory
-        items={transactions} />; */}
-
+      {/* <Statistics
+        stats={data} /> */}
+      <FriendList friends={friends}
+      />
+      
+      <TransactionHistory
+        items={transactions} />; 
       </>
       
     );  
 }
+
+
 
 
 

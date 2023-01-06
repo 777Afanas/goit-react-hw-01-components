@@ -1,8 +1,8 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
-function TransactionHistory() {
+export default function TransactionHistory({ items }) {
     return (
-    <table class="transaction-history">
+    <table className="transaction-history">
   <thead>
     <tr>
       <th>Type</th>
@@ -11,21 +11,37 @@ function TransactionHistory() {
     </tr>
   </thead>
 
-  <tbody>
-    <tr>
-      <td>Invoice</td>
-      <td>125</td>
-      <td>USD</td>
+  <tbody>     
+    {items.map(({ id, type, amount, currency }) => (
+    <tr  key={id}>
+      <td>{type}</td>
+      <td>{amount}</td>
+      <td>{currency}</td>
     </tr>
-    <tr>
-      <td>Withdrawal</td>
-      <td>85</td>
-      <td>USD</td>
-    </tr>
+      ))}          
   </tbody>
 </table >
     );
 }
-      
 
-export default TransactionHistory;
+// TransactionHistory.propTypes = {
+//   // items: PropTypes.exact({
+//    items: PropTypes.arrayOf(
+//     PropTypes.shape({
+//     id: PropTypes.string.isRequired,
+//     type: PropTypes.string.isRequired,
+//     amount: PropTypes.number.isRequired,     
+//     currency: PropTypes.string.isRequired,     
+//   }).isRequired,
+// )}
+
+TransactionHistory.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+      currency: PropTypes.string.isRequired,
+    })
+     ),
+};
